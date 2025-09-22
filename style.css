@@ -1,7 +1,7 @@
 /* Timeline horizontal scroll styles */
 .timeline-scroll {
   display: flex;
-  overflow-x: auto;
+  overflow-x: hidden;
   scroll-snap-type: x mandatory;
   gap: 1rem;
   padding-bottom: 2rem;
@@ -11,9 +11,17 @@
 }
 .timeline-card {
   flex: 0 0 auto;
-  scroll-snap-align: center;
+  scroll-snap-align: start;
   width: 100%;
   max-width: 100%;
+}
+/* Ensure consistent image sizing in timeline cards */
+.timeline-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0.5rem;
 }
 /* Responsive card widths */
 @media (min-width: 1200px) { /* lg and up: 3 per page */
@@ -83,4 +91,15 @@ header {
 .card.timeline-card:focus-within .card-hover-text {
   opacity: 1;
   pointer-events: auto;
+}
+
+/* Scroll snap for timeline cards - hard snap */
+.overflow-auto {
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+.timeline-row > [class*="col-"] {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
